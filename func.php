@@ -59,10 +59,10 @@ function purge($port)
     $local = json_decode(file_get_contents('data/local.json',true));
     if(empty($local))
     {
-        return 'FALSE';
+        return FALSE;
     }
     $port = (string)$port;
     unset($local[$port]);
     file_put_contents('data/local.json', json_encode($local));
-    return 'TRUE';
+    return TRUE;
 }
