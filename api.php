@@ -4,6 +4,27 @@ set_time_limit(0);
 require('func.php');
 define("MY-API-KEY", "myapikey");
 
+// first run init
+if(file_exists('data/local.json'))
+{
+    $first_init = json_decode(file_get_contents('data/local.json'),true);
+    foreach ($first_init as $key => $array) {
+        $success = add($key, $array['password']);
+        if($success === TRUE)
+        {
+            echo 'add ' . $key . ' port success' . "\n";
+        }
+        else
+        {
+            echo 'add ' . $key . ' port FAILED' . "\n";
+        }
+    }
+}
+else
+{
+    echo 'no need to init' . "\n";
+}
+
 $server = 'udp://0.0.0.0:9000';
 $socket = stream_socket_server($server, $errno, $errstr, STREAM_SERVER_BIND);
 do
@@ -35,13 +56,22 @@ do
 
         if ( $receive['type'] === 'add' )
         {
-        	$port = $receive['port'];
-        	$password = $receive['password'];
+        	$port = (string)$receive['port'];
+        	$password = (string)$receive['password'];
         	$return = add($port,$password);
             $msg = array();
             if($return === TRUE)
             {
                 $msg['success'] = TRUE;
+                $add_local = json_decode(file_get_contents('data/local.json'),true);
+                if(!isset($add_local[$port]))
+                {
+                    $add_localp[$port] = array(
+                    'password' => $password,
+                    'traffic' => 0
+                        );
+                    file_put_contents('data/local.json', json_encode($add_local));
+                }
             }
             else
             {
@@ -52,7 +82,7 @@ do
 
         if ( $receive['type'] === 'remove' )
         {
-            $port = $receive['port'];
+            $port = (string)$receive['port'];
         	$return = remove($port);
             $msg = array();
             if($return === TRUE)
@@ -68,7 +98,7 @@ do
 
         if( $receive['type'] === 'purge' )
         {
-            $port = $receive['port'];
+            $port = (string)$receive['port'];
             $return = purge($port);
             $msg = array();
             if($return === TRUE)

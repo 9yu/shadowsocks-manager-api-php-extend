@@ -4,19 +4,18 @@ require('func.php');
 $return = ping();
 if($return === NULL)
 {
-   exit();
+   exit("ping didn't return any data.\n");
 }
 $temp = json_decode(file_get_contents('data/temp.json'),true);
 $local = json_decode(file_get_contents('data/local.json',true));
 if(!isset($temp))
 {
    file_put_contents('data/temp.json', json_encode($return));
-   exit();
+   exit("temp file is not exsit.\n");
 }
 if(!isset($local))
 {
-    file_put_contents('data/local.json', json_encode($return));
-    exit();
+    exit("local file is not exsit.\n");
 }
 foreach ($return as $key => $value) {
     // 增加值
@@ -25,9 +24,9 @@ foreach ($return as $key => $value) {
         $add = (int)$return[$key] - (int)$temp[$key];
         if(!isset($local[$key]))
         {
-            $local[$key] = 0;
+            exit("local port is not exsit.\n");
         }
-        $local[$key] += $add;
+        $local[$key]['traffic'] += $add;
     }
 }
 file_put_contents('data/temp.json', json_encode($return));
