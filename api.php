@@ -22,7 +22,9 @@ if(file_exists('data/local.json'))
 }
 else
 {
-    echo 'no need to init' . "\n";
+    $init_content = '{}';
+    file_put_contents('data/local.json', $init_content);
+    echo 'local.json file init ok' . "\n";
 }
 
 $server = 'udp://0.0.0.0:9000';
@@ -66,7 +68,7 @@ do
                 $add_local = json_decode(file_get_contents('data/local.json'),true);
                 if(!isset($add_local[$port]))
                 {
-                    $add_localp[$port] = array(
+                    $add_local[$port] = array(
                     'password' => $password,
                     'traffic' => 0
                         );
