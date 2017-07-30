@@ -5,8 +5,8 @@ Run SS
 > $ ss-manager -m chacha20-ietf -u --manager-address 127.0.0.1:4000 
 
 Run php api controller  
-> $ screen -S api 
-> $ php api.php 
+> $ screen -S api   
+> $ php api.php   
 
 Set up crontab  
 > $ crontab -e    
