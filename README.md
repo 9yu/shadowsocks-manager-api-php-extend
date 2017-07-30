@@ -12,10 +12,10 @@ Set up crontab
 > $ crontab -e    
 
 ```
-* * * * * /usr/bin/php /root/rcon.php >> /root/rcon.log  
-* * * * * sleep 10; /usr/bin/php /root/rcon.php >> /root/rcon.log  
-* * * * * sleep 20; /usr/bin/php /root/rcon.php >> /root/rcon.log  
-* * * * * sleep 30; /usr/bin/php /root/rcon.php >> /root/rcon.log  
-* * * * * sleep 40; /usr/bin/php /root/rcon.php >> /root/rcon.log  
-* * * * * sleep 50; /usr/bin/php /root/rcon.php >> /root/rcon.log  
+* * * * * /usr/bin/php /root/shadowsocks-manager-api-php-extend/rcon.php >> /root/shadowsocks-manager-api-php-extend/rcon.log  
+* * * * * sleep 10; /usr/bin/php /root/shadowsocks-manager-api-php-extend/rcon.php >> /root/shadowsocks-manager-api-php-extend/rcon.log  
+* * * * * sleep 20; /usr/bin/php /root/shadowsocks-manager-api-php-extend/rcon.php >> /root/shadowsocks-manager-api-php-extend/rcon.log  
+* * * * * sleep 30; /usr/bin/php /root/shadowsocks-manager-api-php-extend/rcon.php >> /root/shadowsocks-manager-api-php-extend/rcon.log  
+* * * * * sleep 40; /usr/bin/php /root/shadowsocks-manager-api-php-extend/rcon.php >> /root/shadowsocks-manager-api-php-extend/rcon.log  
+* * * * * sleep 50; /usr/bin/php /root/shadowsocks-manager-api-php-extend/rcon.php >> /root/shadowsocks-manager-api-php-extend/rcon.log  
 ```
