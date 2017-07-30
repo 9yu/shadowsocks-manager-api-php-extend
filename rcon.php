@@ -6,11 +6,11 @@ if($return === NULL)
 {
    exit("ping didn't return any data.\n");
 }
-$temp = json_decode(file_get_contents('data/temp.json'),true);
-$local = json_decode(file_get_contents('data/local.json',true));
+$temp = json_decode(file_get_contents('/root/shadowsocks-manager-api-php-extend/data/temp.json'),true);
+$local = json_decode(file_get_contents('/root/shadowsocks-manager-api-php-extend/data/local.json',true));
 if(!isset($temp))
 {
-   file_put_contents('data/temp.json', json_encode($return));
+   file_put_contents('/root/shadowsocks-manager-api-php-extend/data/temp.json', json_encode($return));
    exit("temp file is not exsit.\n");
 }
 if(!isset($local))
@@ -29,5 +29,5 @@ foreach ($return as $key => $value) {
         $local[$key]['traffic'] += $add;
     }
 }
-file_put_contents('data/temp.json', json_encode($return));
-file_put_contents('data/local.json', json_encode($local));
+file_put_contents('/root/shadowsocks-manager-api-php-extend/data/temp.json', json_encode($return));
+file_put_contents('/root/shadowsocks-manager-api-php-extend/data/local.json', json_encode($local));
