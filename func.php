@@ -53,7 +53,7 @@ function remove($port)
         return FALSE;
     }
 }
-
+/**
 function purge($port)
 {
     $local = json_decode(file_get_contents('data/local.json'),true);
@@ -66,3 +66,4 @@ function purge($port)
     file_put_contents('data/local.json', json_encode($local));
     return TRUE;
 }
+**/

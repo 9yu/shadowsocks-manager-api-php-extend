@@ -5,6 +5,7 @@ require('func.php');
 define("MY-API-KEY", "myapikey");
 
 // first run init
+/**
 if(file_exists('data/local.json'))
 {
     $first_init = json_decode(file_get_contents('data/local.json'),true);
@@ -26,6 +27,7 @@ else
     file_put_contents('data/local.json', $init_content);
     echo 'local.json file init ok' . "\n";
 }
+**/ 
 
 $server = 'udp://0.0.0.0:9000';
 $socket = stream_socket_server($server, $errno, $errstr, STREAM_SERVER_BIND);
@@ -65,6 +67,7 @@ do
             if($return === TRUE)
             {
                 $msg['success'] = TRUE;
+                /**
                 $add_local = json_decode(file_get_contents('data/local.json'),true);
                 if(!isset($add_local[$port]))
                 {
@@ -74,6 +77,7 @@ do
                         );
                     file_put_contents('data/local.json', json_encode($add_local));
                 }
+                **/
             }
             else
             {
@@ -98,6 +102,7 @@ do
         	stream_socket_sendto($socket, json_encode($msg), 0, $peer);
         }
 
+        /**
         if( $receive['type'] === 'purge' )
         {
             $port = (string)$receive['port'];
@@ -113,6 +118,7 @@ do
             }
             stream_socket_sendto($socket, json_encode($msg), 0, $peer);
         }
+        **/
     }
     else
     {
